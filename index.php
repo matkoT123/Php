@@ -10,7 +10,13 @@ try {
     $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $query = "SELECT * FROM person";
+    // $query = "SELECT * FROM person";
+
+    $query = "SELECT person.name, person.surname, games.year, games.city, games.country, games.type, placement.discipline
+    FROM placement
+    JOIN person ON placement.person_id = person.id
+    JOIN games ON placement.games_id = games.id;
+    ";
     $stmt = $db->query($query); 
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -37,14 +43,20 @@ try {
 
         <table class="table table-success table-striped-columns">
             <thead>
-                <tr><th>Id</th><th>Name</th><th>Surname</th><th>B-day</th></tr>
+                <tr><th>Name</th><th>Surname</th><th>Year</th><th>City</th>
+                <th>Country</th><th>Type</th><th>Discipline</th></tr>
             </thead>
 
             <tbody>
                 <?php 
                 foreach($results as $result) {
-                    echo "<tr><td>" . $result["id"] . "</td><td>" . $result["name"] . 
-                    "</td><td>" . $result["surname"] . "</td><td>" . $result["birth_day"] . 
+                    echo "<tr><td>" . $result["name"] . 
+                    "</td><td>" . $result["surname"] . 
+                    "</td><td>" . $result["year"] . 
+                    "</td><td>" . $result["city"] .
+                    "</td><td>" . $result["country"] .
+                    "</td><td>" . $result["type"] .
+                    "</td><td>" . $result["discipline"] .
                     "</td><tr/>" ;
                 }
                 ?>

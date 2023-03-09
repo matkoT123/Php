@@ -12,10 +12,9 @@ try {
 
     // $query = "SELECT * FROM person";
 
-    $query = "SELECT person.name, person.surname, games.year, games.city, games.country, games.type, placement.discipline
-    FROM placement
-    JOIN person ON placement.person_id = person.id
-    JOIN games ON placement.games_id = games.id;
+    $query = "SELECT p.id, p.name, p.surname, COUNT(pl.person_id) AS gold_medals FROM person p 
+    JOIN placement pl ON p.id = pl.person_id WHERE pl.placing = 1 GROUP BY p.id ORDER BY
+    COUNT(pl.person_id) DESC LIMIT 10;
     ";
     $stmt = $db->query($query);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -53,8 +52,8 @@ try {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" href="index.php">Olympionici</a>
-                        <a class="nav-link" href="bestAthlets.php">Top 10</a>
+                        <a class="nav-link" href="index.php">Olympionici</a>
+                        <a class="nav-link active" href="bestAthlets.php">Top 10</a>
                     </div>
                 </div>
             </div>
@@ -62,32 +61,25 @@ try {
     </header>
 
     <div class="container">
-        <h1 id="more">Olympionici</h1>
+        <h1 id="more">Top 10</h1>
 
-
-        <table class="table table-success table-striped" id="athletesTable">
+        <table class="table table-success table-striped" id="tableTop10">
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Name</th>
                     <th>Surname</th>
-                    <th>Year</th>
-                    <th>City</th>
-                    <th>Country</th>
-                    <th>Type</th>
-                    <th>Discipline</th>
+                    <th>Gold_medals</th>
                 </tr>
             </thead>
             <tbody>
 
                 <?php
                 foreach ($results as $result) {
-                    echo "<tr><td>" . $result["name"] .
+                    echo "<tr><td>" . $result["id"] .
+                        "</td><td>" . $result["name"] .
                         "</td><td>" . $result["surname"] .
-                        "</td><td>" . $result["year"] .
-                        "</td><td>" . $result["city"] .
-                        "</td><td>" . $result["country"] .
-                        "</td><td>" . $result["type"] .
-                        "</td><td>" . $result["discipline"] .
+                        "</td><td>" . $result["gold_medals"] .
                         "</td></tr>";
                 }
                 ?>
@@ -97,16 +89,8 @@ try {
 
         <script>
             $(document).ready(function() {
-                $('#athletesTable').DataTable({
-                    columnDefs: [{
-                            targets: [0, 3, 4, 6],
-                            orderable: false
-                        },
-                        {
-                            targets: [5],
-                            orderData: [2],
-                        }
-                    ],
+                $('#tableTop10').DataTable({
+                    paging: false
                 });
             });
         </script>

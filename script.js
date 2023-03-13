@@ -12,5 +12,3 @@ $(document).ready(function() {
         ],
     });
 });
-
-console.log(pica);

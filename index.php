@@ -51,8 +51,8 @@ try {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" href="index.php">Olympionici</a>
-                        <a class="nav-link" href="bestAthlets.php">Top 10</a>
+                        <a class="nav-link active menu" href="index.php">Olympionici</a>
+                        <a class="nav-link menu" href="bestAthlets.php">Top 10</a>
                     </div>
                 </div>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
@@ -62,6 +62,21 @@ try {
             </div>
         </nav>
     </header>
+
+    <?php
+
+    // session_start();
+
+    // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    //     // Neprihlaseny pouzivatel, zobraz odkaz na Login alebo Register stranku.
+    //     echo '<p>Nie ste prihlaseny, prosim <a href="login.php">prihlaste sa</a> alebo sa <a href="register.php">zaregistrujte</a>.</p>';
+    // } else {
+    //     // Prihlaseny pouzivatel, zobraz odkaz na zabezpecenu stranku.
+    //     echo '<h3>Vitaj ' . $_SESSION['fullname'] . ' </h3>';
+    //     echo '<a href="restricted.php">Zabezpecena stranka</a>';
+    // }
+
+    // ?>
 
     <div class="container">
         <h1 id="more">Olympionici</h1>

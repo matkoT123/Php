@@ -50,8 +50,8 @@ try {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link" href="index.php">Olympionici</a>
-                        <a class="nav-link active" href="bestAthlets.php">Top 10</a>
+                        <a class="nav-link menu" href="index.php">Olympionici</a>
+                        <a class="nav-link active menu" href="bestAthlets.php">Top 10</a>
                     </div>
                 </div>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">

@@ -1,3 +1,29 @@
 table tr {
     cursor: pointer;
 }
+
+.navbar {
+    padding: 0.6rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.menu {
+    font-size: 1.2rem;
+}
+
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    padding: 2rem;
+}
+
+.dataTables_filter{
+    padding: 2rem;
+}
+
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+    padding: 1.3rem;
+}

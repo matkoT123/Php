@@ -10,8 +10,6 @@ try {
     $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // $query = "SELECT * FROM person";
-
     $query = "SELECT person.name, person.surname, games.year, games.city, games.country, games.type, placement.discipline
     FROM placement
     JOIN person ON placement.person_id = person.id
@@ -47,7 +45,7 @@ try {
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Zadanie 1</a>
+                <a class="navbar-brand" href="index.php">Zadanie 1</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -64,6 +62,8 @@ try {
     <div class="container">
         <h1 id="more">Olympionici</h1>
 
+        
+        
 
         <table class="table table-success table-striped" id="athletesTable">
             <thead>
@@ -95,6 +95,7 @@ try {
             </tbody>
         </table>
 
+        <script type="text/javascript" src="bestAthlets.js?v=<?php echo time(); ?>"></script>
         <script type="text/javascript" src="script.js?v=<?php echo time(); ?>"></script>
 
     </div>

@@ -10,12 +10,17 @@ try {
     $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $query = "SELECT p.id, p.name, p.surname, COUNT(pl.person_id) AS gold_medals FROM person p 
-    JOIN placement pl ON p.id = pl.person_id WHERE pl.placing = 1 GROUP BY p.id ORDER BY
-    COUNT(pl.person_id) DESC LIMIT 10;
+    // $query = "SELECT * FROM person";
+    $index = $_COOKIE['index'];
+    $query = "SELECT p.name, p.surname, g.type, g.year, g.city, g.country, pl.placing, pl.discipline
+    FROM person p
+    INNER JOIN placement pl ON p.id = pl.person_id
+    INNER JOIN games g ON pl.games_id = g.id
+    WHERE p.id = $index;
     ";
     $stmt = $db->query($query);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
@@ -31,7 +36,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link href="bestAthlets.css?v=<?php echo time(); ?>" rel="stylesheet">
+    <link rel="stylesheet" href="bestAthletDetail.css?v=<?php echo time(); ?>">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
@@ -50,8 +55,8 @@ try {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link" href="index.php">Olympionici</a>
-                        <a class="nav-link active" href="bestAthlets.php">Top 10</a>
+                        <a class="nav-link active" href="index.php">Olympionici</a>
+                        <a class="nav-link" href="bestAthlets.php">Top 10</a>
                     </div>
                 </div>
             </div>
@@ -59,25 +64,36 @@ try {
     </header>
 
     <div class="container">
-        <h1 id="more">Top 10</h1>
+        <h1 id="more">Athlet Detail</h1>
 
-        <table class="table table-success table-striped" id="tableTop10">
+        
+
+
+        <table class="table table-success table-striped" id="athletDetailTable">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Name</th>
                     <th>Surname</th>
-                    <th>Gold_medals</th>
+                    <th>Placing</th>
+                    <th>Discipline</th>
+                    <th>Year</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Type</th>
                 </tr>
             </thead>
             <tbody>
 
-                <?php
+            <?php
                 foreach ($results as $result) {
-                    echo "<tr><td>" . $result["id"] .
-                        "</td><td>" . $result["name"] .
+                    echo "<tr><td>" . $result["name"] .
                         "</td><td>" . $result["surname"] .
-                        "</td><td>" . $result["gold_medals"] .
+                        "</td><td>" . $result["placing"] .
+                        "</td><td>" . $result["discipline"] .
+                        "</td><td>" . $result["year"] .
+                        "</td><td>" . $result["city"] .
+                        "</td><td>" . $result["country"] .
+                        "</td><td>" . $result["type"] .
                         "</td></tr>";
                 }
                 ?>
@@ -86,6 +102,7 @@ try {
         </table>
 
         <script type="text/javascript" src="bestAthlets.js?v=<?php echo time(); ?>"></script>
+        <script type="text/javascript" src="bestAthletDetail.js?v=<?php echo time(); ?>"></script>
 
     </div>
 

@@ -1,6 +1,6 @@
 $(document).ready(function() {
     table = $('#athletDetailTable').DataTable({
-        paging: false,
+        paging: false,  
         searching: false
     });
 });

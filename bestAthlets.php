@@ -54,6 +54,10 @@ try {
                         <a class="nav-link active" href="bestAthlets.php">Top 10</a>
                     </div>
                 </div>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                    <button class="btn btn-outline-success m-1" type="button">Log in</button>
+                    <button class="btn btn-outline-success m-1" type="button">Register</button>
+                </div>
             </div>
         </nav>
     </header>

@@ -55,15 +55,16 @@ try {
                         <a class="nav-link" href="bestAthlets.php">Top 10</a>
                     </div>
                 </div>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                    <button class="btn btn-outline-success m-1" type="button">Log in</button>
+                    <button class="btn btn-outline-success m-1" type="button">Register</button>
+                </div>
             </div>
         </nav>
     </header>
 
     <div class="container">
         <h1 id="more">Olympionici</h1>
-
-        
-        
 
         <table class="table table-success table-striped" id="athletesTable">
             <thead>

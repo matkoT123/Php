@@ -59,15 +59,17 @@ try {
                         <a class="nav-link" href="bestAthlets.php">Top 10</a>
                     </div>
                 </div>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                    <button class="btn btn-outline-success m-1" type="button">Log in</button>
+                    <button class="btn btn-outline-success m-1" type="button">Register</button>
+                </div>
             </div>
         </nav>
     </header>
 
     <div class="container">
+
         <h1 id="more">Athlet Detail</h1>
-
-        
-
 
         <table class="table table-success table-striped" id="athletDetailTable">
             <thead>
@@ -101,7 +103,6 @@ try {
             </tbody>
         </table>
 
-        <script type="text/javascript" src="bestAthlets.js?v=<?php echo time(); ?>"></script>
         <script type="text/javascript" src="bestAthletDetail.js?v=<?php echo time(); ?>"></script>
 
     </div>

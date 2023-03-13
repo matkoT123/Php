@@ -2,7 +2,8 @@ let table;
 
 $(document).ready(function() {
     table = $('#tableTop10').DataTable({
-        paging: false
+        paging: false,
+        searching: false
     });
 });
 

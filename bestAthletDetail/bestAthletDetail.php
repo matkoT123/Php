@@ -10,7 +10,6 @@ try {
     $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // $query = "SELECT * FROM person";
     $index = $_COOKIE['index'];
     $query = "SELECT p.name, p.surname, g.type, g.year, g.city, g.country, pl.placing, pl.discipline
     FROM person p
@@ -18,9 +17,9 @@ try {
     INNER JOIN games g ON pl.games_id = g.id
     WHERE p.id = $index;
     ";
+
     $stmt = $db->query($query);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
@@ -36,10 +35,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="bestAthletDetail.css?v=<?php echo time(); ?>">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="bestAthletDetail/bestAthletDetail.css?v=<?php echo time(); ?>">
 
     <title>Document</title>
 </head>
@@ -55,7 +51,7 @@ try {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active menu" href="index.php">Olympionici</a>
+                        <a class="nav-link menu" href="index.php">Olympionici</a>
                         <a class="nav-link menu" href="bestAthlets.php">Top 10</a>
                     </div>
                 </div>
@@ -86,7 +82,7 @@ try {
             </thead>
             <tbody>
 
-            <?php
+                <?php
                 foreach ($results as $result) {
                     echo "<tr><td>" . $result["name"] .
                         "</td><td>" . $result["surname"] .
@@ -95,7 +91,7 @@ try {
                         "</td><td>" . $result["year"] .
                         "</td><td>" . $result["city"] .
                         "</td><td>" . $result["country"] .
-                        "</td><td>" . $result["type"] .
+                        "</td><td>" . $result["type"] . 
                         "</td></tr>";
                 }
                 ?>
@@ -103,7 +99,10 @@ try {
             </tbody>
         </table>
 
-        <script type="text/javascript" src="bestAthletDetail.js?v=<?php echo time(); ?>"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="bestAthletDetail/bestAthletDetail.js?v=<?php echo time(); ?>"></script>
 
     </div>
 
